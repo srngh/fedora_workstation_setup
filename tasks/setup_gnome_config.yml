@@ -1,0 +1,111 @@
+---
+
+- name: Change Window button layout
+  community.general.dconf:
+    key: "/org/gnome/desktop/wm/preferences/button-layout"
+    value: "'appmenu:minimize,maximize,close'"
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Enable resize-with-right-button
+  community.general.dconf:
+    key: "/org/gnome/desktop/wm/preferences/resize-with-right-button"
+    value: "true"
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Enable Weekday in Clock
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/clock-show-weekday"
+    value: "true"
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Set Clock format to 24h
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/clock-format"
+    value: "'24h'"
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Enable Weekday in Calender
+  community.general.dconf:
+    key: "/org/gnome/desktop/calendar/show-weekdate"
+    value: "true"
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Enable Middle Click Paste
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/gtk-enable-primary-paste"
+    value: "true"
+  become: true
+  become_user: "{{ target_user }}"
+
+# Change Cursor and Icon
+- name: Set cursor to Bibata-Modern-Ice
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/cursor-theme"
+    value: "'Bibata-Modern-Ice'"
+  become: true
+  become_user: "{{ target_user }}"
+  when: enable_bibata_cursor
+
+- name: Set icons to Papirus-Light
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/icon-theme"
+    value: "'Papirus-Light'"
+  become: true
+  become_user: "{{ target_user }}"
+  when: enable_papirus_icons
+
+# Custom keybinds
+- name: Setup subfolder for custom keybinds
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+    value: >-
+      ['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Setup Keybind for Ghostty
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
+    value: "'<Super>Return'"
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Bind Command to Keybind for Ghostty
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
+    value: "'/usr/bin/ghostty'"
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Add name to Keybind for Ghostty
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
+    value: "'Launch Terminal'"
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Setup Keybind for 1Password Quick Access
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding"
+    value: "'<Shift><Control>space'"
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Bind Command to Keybind for 1Password Quick Access
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/command"
+    value: "'/usr/bin/1password --quick-access'"
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Add name to Keybind for 1Password Quick Access
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/name"
+    value: "'1Password Quick Access'"
+  become: true
+  become_user: "{{ target_user }}"

@@ -1,0 +1,73 @@
+---
+- name: Ensure Ghostty config directory exists
+  ansible.builtin.file:
+    path: "/home/{{ target_user }}/.config/ghostty"
+    state: directory
+    mode: '0755'
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Setup Ghostty config
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/workstation_setup/files/ghostty.config"
+    dest: "/home/{{ target_user }}/.config/ghostty/config"
+    mode: '0644'
+  become: true
+  become_user: "{{ target_user }}"
+
+# Terra repo doesn't seem to include any ghostty themes ...
+- name: Ensure Ghostty theme directory exists
+  ansible.builtin.file:
+    path: "/home/{{ target_user }}/.config/ghostty/themes"
+    state: directory
+    mode: '0755'
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Setup Ghostty Adwaita theme
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/workstation_setup/files/ghostty_Adwaita.theme"
+    dest: "/home/{{ target_user }}/.config/ghostty/themes/Adwaita"
+    mode: '0644'
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Setup Ghostty Adwaita dark theme
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/workstation_setup/files/ghostty_Adwaita_Dark.theme"
+    dest: "/home/{{ target_user }}/.config/ghostty/themes/Adwaita\ Dark"
+    mode: '0644'
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Ensure VS Codum config directory exists
+  ansible.builtin.file:
+    path: "/home/{{ target_user }}/.config/VSCodium/User"
+    state: directory
+    mode: '0755'
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Setup VS Codium config
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/workstation_setup/files/vscodium.json"
+    dest: "/home/{{ target_user }}/.config/VSCodium/User/settings.json"
+    mode: '0644'
+  become: true
+  become_user: "{{ target_user }}"
+
+# Something in the Terra product.json is fucked, this product.json is from paul carottys repo
+# Fixes the OpenVSX Marketplace being unavailable
+- name: Fix VS Codium product.json
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/workstation_setup/files/codium_product.json"
+    dest: "/usr/share/codium/resources/app/product.json"
+    mode: '0644'
+
+- name: Setup Vim config
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/workstation_setup/files/vimrc"
+    dest: "/home/{{ target_user }}/.vimrc"
+    mode: '0644'
+  become: true
+  become_user: "{{ target_user }}"

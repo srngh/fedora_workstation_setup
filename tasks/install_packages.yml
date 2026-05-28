@@ -1,0 +1,54 @@
+---
+
+- name: Install packages via dnf
+  ansible.builtin.dnf:
+    name:
+      - vim
+      - helix
+      - htop
+      - bat
+      - gimp
+      - krita
+      - inkscape
+      - gnome-builder
+      - gnome-tweaks
+      - python3-pip
+      - python3-ansible-lint
+      - golang
+    state: present
+
+- name: Install Papirus Icon Theme
+  ansible.builtin.dnf:
+    name: papirus-icon-theme
+    state: present
+  when: enable_papirus_icons
+
+- name: Install packages from Terra
+  ansible.builtin.dnf:
+    name:
+      - ghostty
+      - codium
+      - bibata-cursor-theme
+      - starship
+    state: present
+  when: use_terra_repository
+
+- name: Check if 1Password is installed
+  ansible.builtin.package:
+    name: 1password
+  check_mode: true
+  ignore_errors: true
+  register: fedora_workstation_setup_package_check_1password
+
+- name: Download latest 1Password package
+  ansible.builtin.get_url:
+    url: https://downloads.1password.com/linux/rpm/stable/x86_64/1password-latest.rpm
+    dest: /tmp/1password-latest.rpm
+    mode: '0644'
+  when: fedora_workstation_setup_package_check_1password.rc == 1
+
+- name: Install 1Password
+  ansible.builtin.dnf:
+    name: /tmp/1password-latest.rpm
+    disable_gpg_check: true
+  when: fedora_workstation_setup_package_check_1password.rc == 1

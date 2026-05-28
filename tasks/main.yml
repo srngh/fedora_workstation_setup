@@ -1,0 +1,15 @@
+---
+- name: Install Additional Repositories
+  ansible.builtin.import_tasks: install_additional_repos.yml
+
+- name: Install Fedora packages
+  ansible.builtin.import_tasks: install_packages.yml
+
+- name: Install Flatpaks
+  ansible.builtin.import_tasks: install_flatpaks.yml
+
+- name: Setup Gnome settings
+  ansible.builtin.import_tasks: setup_gnome_config.yml
+
+- name: Copy Application configs
+  ansible.builtin.import_tasks: copy_configs.yml

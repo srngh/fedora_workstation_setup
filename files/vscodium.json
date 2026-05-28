@@ -1,0 +1,15 @@
+{
+    "explorer.confirmDragandDrop": false,
+    "explorer.confirmDelete": false,
+    "window.autoDetectColorScheme": true,
+    "editor.minimap.enabled": false,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/DS_Store": true,
+        ".flatpak/repo**": true,
+        ".flatpak/flatpak-builder": true
+    },
+    "redhat.telemetry.enabled": false
+}

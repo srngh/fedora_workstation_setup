@@ -1,0 +1,14 @@
+---
+
+- name: Install Flatpak applications
+  community.general.flatpak:
+    name:
+      - com.mattjakeman.ExtensionManager
+      - app.zen_browser.zen
+      - ar.xjuan.Cambalache
+      - io.github.nokse22.minitext
+      - io.podman_desktop.PodmanDesktop
+      - it.fabiodistasio.AntaresSQL
+      - md.obsidian.Obsidian
+      - org.onlyoffice.desktopeditors
+    method: system

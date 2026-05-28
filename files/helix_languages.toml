@@ -1,0 +1,13 @@
+[[language]]
+name = "python"
+language-servers = ["ruff"]
+auto-format = true
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+
+[[language]]
+name = "go"
+auto-format = true
+formatter = {command = "goimports"}
