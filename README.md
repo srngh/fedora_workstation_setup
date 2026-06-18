@@ -77,13 +77,13 @@ A bunch of packages will be installed.
 
 ## Other
 
-- 1Password (configures its repository on install)
+- 1Password (will set up the 1password repository on install)
 
 # Gnome Settings
 
 ## Hotkeys
 
-Ctrl + Space: 1Password Quick Access
+Ctrl + Shift + Space: 1Password Quick Access
 Super + Enter: Launch Ghostty
 
 ## Settings
