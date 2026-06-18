@@ -71,3 +71,11 @@
     mode: '0644'
   become: true
   become_user: "{{ target_user }}"
+
+- name: Setup starship config
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/workstation_setup/files/starship.toml"
+    dest: "/home/{{ target_user }}/.config/starship.toml"
+    mode: '0644'
+  become: true
+  become_user: "{{ target_user }}"
