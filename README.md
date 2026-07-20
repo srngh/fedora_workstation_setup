@@ -74,6 +74,8 @@ A bunch of packages will be installed.
 - codium
 - bibata-cursor-theme
 - starship
+- vicinae
+- gnome-shell-extension-vicinae
 
 ## Other
 
@@ -85,6 +87,7 @@ A bunch of packages will be installed.
 
 Ctrl + Space: 1Password Quick Access
 Super + Enter: Launch Ghostty
+Super + Space: Launch Vicinae
 
 ## Settings
 

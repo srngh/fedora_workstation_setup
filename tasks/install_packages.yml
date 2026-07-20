@@ -30,6 +30,8 @@
       - codium
       - bibata-cursor-theme
       - starship
+      - vicinae
+      - gnome-shell-extension-vicinae
     state: present
   when: use_terra_repository
 

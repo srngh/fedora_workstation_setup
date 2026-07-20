@@ -11,5 +11,7 @@
         ".flatpak/repo**": true,
         ".flatpak/flatpak-builder": true
     },
-    "redhat.telemetry.enabled": false
+    "redhat.telemetry.enabled": false,
+    "ansible.lightspeed.enabled": false,
+    "ansible.lightspeed.suggestions.enabled": false
 }

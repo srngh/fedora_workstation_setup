@@ -64,7 +64,9 @@
   community.general.dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
     value: >-
-      ['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']
+      ['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/',
+      '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/',
+      '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']
   become: true
   become_user: "{{ target_user }}"
 
@@ -107,5 +109,26 @@
   community.general.dconf:
     key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/name"
     value: "'1Password Quick Access'"
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Setup Keybind for vicinae
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/binding"
+    value: "'<Super>space'"
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Bind Command to Keybind for vicinae
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/command"
+    value: "'vicinae toggle'"
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Add name to Keybind for vicinae
+  community.general.dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/name"
+    value: "'Vicinae'"
   become: true
   become_user: "{{ target_user }}"

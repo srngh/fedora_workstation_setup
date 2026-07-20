@@ -9,7 +9,7 @@
 
 - name: Setup Ghostty config
   ansible.builtin.copy:
-    src: "{{ playbook_dir }}/roles/workstation_setup/files/ghostty.config"
+    src: "{{ playbook_dir }}/roles/fedora_workstation_setup/files/ghostty.config"
     dest: "/home/{{ target_user }}/.config/ghostty/config"
     mode: '0644'
   become: true
@@ -26,7 +26,7 @@
 
 - name: Setup Ghostty Adwaita theme
   ansible.builtin.copy:
-    src: "{{ playbook_dir }}/roles/workstation_setup/files/ghostty_Adwaita.theme"
+    src: "{{ playbook_dir }}/roles/fedora_workstation_setup/files/ghostty_Adwaita.theme"
     dest: "/home/{{ target_user }}/.config/ghostty/themes/Adwaita"
     mode: '0644'
   become: true
@@ -34,7 +34,7 @@
 
 - name: Setup Ghostty Adwaita dark theme
   ansible.builtin.copy:
-    src: "{{ playbook_dir }}/roles/workstation_setup/files/ghostty_Adwaita_Dark.theme"
+    src: "{{ playbook_dir }}/roles/fedora_workstation_setup/files/ghostty_Adwaita_Dark.theme"
     dest: "/home/{{ target_user }}/.config/ghostty/themes/Adwaita\ Dark"
     mode: '0644'
   become: true
@@ -50,7 +50,7 @@
 
 - name: Setup VS Codium config
   ansible.builtin.copy:
-    src: "{{ playbook_dir }}/roles/workstation_setup/files/vscodium.json"
+    src: "{{ playbook_dir }}/roles/fedora_workstation_setup/files/vscodium.json"
     dest: "/home/{{ target_user }}/.config/VSCodium/User/settings.json"
     mode: '0644'
   become: true
@@ -60,14 +60,22 @@
 # Fixes the OpenVSX Marketplace being unavailable
 - name: Fix VS Codium product.json
   ansible.builtin.copy:
-    src: "{{ playbook_dir }}/roles/workstation_setup/files/codium_product.json"
+    src: "{{ playbook_dir }}/roles/fedora_workstation_setup/files/codium_product.json"
     dest: "/usr/share/codium/resources/app/product.json"
     mode: '0644'
 
 - name: Setup Vim config
   ansible.builtin.copy:
-    src: "{{ playbook_dir }}/roles/workstation_setup/files/vimrc"
+    src: "{{ playbook_dir }}/roles/fedora_workstation_setup/files/vimrc"
     dest: "/home/{{ target_user }}/.vimrc"
+    mode: '0644'
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Setup Vicinae config
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/fedora_workstation_setup/files/vicinae_settings.json"
+    dest: "/home/{{ target_user }}/.config/vicinae/settings.json"
     mode: '0644'
   become: true
   become_user: "{{ target_user }}"

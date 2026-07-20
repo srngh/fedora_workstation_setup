@@ -13,3 +13,12 @@
 
 - name: Copy Application configs
   ansible.builtin.import_tasks: copy_configs.yml
+
+- name: Start Vicinae service
+  ansible.builtin.systemd:
+    scope: user
+    enabled: true
+    state: started
+    name: vicinae
+  become: true
+  become_user: "{{ target_user }}"
