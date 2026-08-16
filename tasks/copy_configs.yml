@@ -74,8 +74,16 @@
 
 - name: Setup starship config
   ansible.builtin.copy:
-    src: "{{ playbook_dir }}/roles/workstation_setup/files/starship.toml"
+    src: "{{ playbook_dir }}/roles/fedora_workstation_setup/files/starship.toml"
     dest: "/home/{{ target_user }}/.config/starship.toml"
+    mode: '0644'
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Setup Bashrc
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/fedora_workstation_setup/files/bashrc"
+    dest: "/home/{{ target_user }}/.bashrc"
     mode: '0644'
   become: true
   become_user: "{{ target_user }}"
