@@ -1,0 +1,39 @@
+format = """\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration\
+$python\
+$character"""
+
+add_newline = false
+
+[directory]
+style = "bright-black"
+
+[character]
+success_symbol = "[▶](bold green) "
+error_symbol = "[▶](red) "
+
+[git_branch]
+format = "[$branch]($style) "
+style = "bright-black"
+
+[git_status]
+format = "[$all_status$ahead_behind]($style) "
+up_to_date = "✓"
+style = "blue"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
+
+[python]
+format = "[$virtualenv]($style) "
+style = "bright-black"
+
+[golang]
+format = "via [$symbol($version )($mod_version )]($style)"
+style = "red"
+disabled = false

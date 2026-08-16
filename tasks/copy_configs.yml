@@ -72,10 +72,10 @@
   become: true
   become_user: "{{ target_user }}"
 
-- name: Setup Vicinae config
+- name: Setup starship config
   ansible.builtin.copy:
-    src: "{{ playbook_dir }}/roles/fedora_workstation_setup/files/vicinae_settings.json"
-    dest: "/home/{{ target_user }}/.config/vicinae/settings.json"
+    src: "{{ playbook_dir }}/roles/workstation_setup/files/starship.toml"
+    dest: "/home/{{ target_user }}/.config/starship.toml"
     mode: '0644'
   become: true
   become_user: "{{ target_user }}"
