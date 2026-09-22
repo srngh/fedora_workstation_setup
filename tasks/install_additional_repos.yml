@@ -3,7 +3,7 @@
   ansible.builtin.dnf:
     name: >-
       https://repos.fyralabs.com/terra{{ ansible_facts['distribution_version'] }}/terra-gpg-keys-0:{{
-      ansible_facts['distribution_version'] }}-5.noarch.rpm
+      ansible_facts['distribution_version'] }}-6.noarch.rpm
     disable_gpg_check: true
   when: use_terra_repository
 
