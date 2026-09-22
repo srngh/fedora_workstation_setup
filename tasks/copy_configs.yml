@@ -87,3 +87,19 @@
     mode: '0644'
   become: true
   become_user: "{{ target_user }}"
+
+- name: Setup Helix config
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/fedora_workstation_setup/files/helix.toml"
+    dest: "/home/{{ target_user }}/.config/helix/config.toml"
+    mode: '0644'
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Setup Helix language server config
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/fedora_workstation_setup/files/helix_languages.toml"
+    dest: "/home/{{ target_user }}/.config/helix/languages.toml"
+    mode: '0644'
+  become: true
+  become_user: "{{ target_user }}"
