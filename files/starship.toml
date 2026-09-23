@@ -5,6 +5,7 @@ $git_state\
 $git_status\
 $cmd_duration\
 $python\
+$golang\
 $character"""
 
 add_newline = false
@@ -13,27 +14,29 @@ add_newline = false
 style = "bright-black"
 
 [character]
-success_symbol = "[▶](bold green) "
-error_symbol = "[▶](red) "
+success_symbol = "[▶](bold green)"
+error_symbol = "[▶](red)"
 
 [git_branch]
-format = "[$branch]($style) "
-style = "bright-black"
+format = "[($branch )]($style)"
+style = "cyan"
 
 [git_status]
-format = "[$all_status$ahead_behind]($style) "
+format = "[($ahead_behind )]($style)"
 up_to_date = "✓"
 style = "blue"
 
 [cmd_duration]
-format = "[$duration]($style) "
+format = "[($duration )]($style)"
 style = "yellow"
 
 [python]
-format = "[$virtualenv]($style) "
-style = "bright-black"
+symbol = "py "
+format = "[$symbol($virtualenv )]($style)"
+style = "green"
 
 [golang]
-format = "via [$symbol($version )($mod_version )]($style)"
-style = "red"
-disabled = false
+symbol = "go "
+format = "[$symbol($version )]($style)"
+version_format = 'v${raw}'
+style = "blue bold"
