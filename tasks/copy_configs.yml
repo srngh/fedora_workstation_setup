@@ -88,6 +88,22 @@
   become: true
   become_user: "{{ target_user }}"
 
+- name: Ensure Helix config directory exists
+  ansible.builtin.file:
+    path: "/home/{{ target_user }}/.config/helix"
+    state: directory
+    mode: '0755'
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Ensure Helix theme directory exists
+  ansible.builtin.file:
+    path: "/home/{{ target_user }}/.config/helix/theme"
+    state: directory
+    mode: '0755'
+  become: true
+  become_user: "{{ target_user }}"
+
 - name: Setup Helix config
   ansible.builtin.copy:
     src: "{{ playbook_dir }}/roles/fedora_workstation_setup/files/helix.toml"
@@ -100,6 +116,14 @@
   ansible.builtin.copy:
     src: "{{ playbook_dir }}/roles/fedora_workstation_setup/files/helix_languages.toml"
     dest: "/home/{{ target_user }}/.config/helix/languages.toml"
+    mode: '0644'
+  become: true
+  become_user: "{{ target_user }}"
+
+- name: Setup Helix theme
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/fedora_workstation_setup/files/helix_snazzy_dark.toml"
+    dest: "/home/{{ target_user }}/.config/helix/themes/snazzy-dark.toml"
     mode: '0644'
   become: true
   become_user: "{{ target_user }}"

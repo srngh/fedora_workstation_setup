@@ -1,0 +1,4 @@
+inherits = "snazzy"
+
+
+"ui.background" = { fg = "foreground", bg = "background_dark" }
