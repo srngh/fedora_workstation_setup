@@ -40,6 +40,14 @@
   become: true
   become_user: "{{ target_user }}"
 
+- name: Setup Ghostty Snazzy theme
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/roles/fedora_workstation_setup/files/ghostty_Snazzy.theme"
+    dest: "/home/{{ target_user }}/.config/ghostty/themes/Snazzy"
+    mode: '0644'
+  become: true
+  become_user: "{{ target_user }}"
+
 - name: Ensure VS Codum config directory exists
   ansible.builtin.file:
     path: "/home/{{ target_user }}/.config/VSCodium/User"
